@@ -1,3 +1,4 @@
+// A integrer sur Phaser
 function key() // récuère les inputs clavier et agis en conséquence
 {
 	window.onkeydown = function(event)
