@@ -47,6 +47,7 @@ View.Room.prototype = {
 
 		if(game.player.PlayerDisconected)
 		{
+			game.ghosts[game.player.PlayerDisconected].sprite.kill();
 			delete game.ghosts[game.player.PlayerDisconected]
 			game.player.PlayerDisconected = false;
 		}
