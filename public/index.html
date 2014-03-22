@@ -1,28 +1,39 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf8">
-	</head>
+<!doctype html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8" />
+    <title>getYourFuckingMoney</title>
+    <script type="text/javascript" src="phaser.min.js"></script>
+    <script>window.View = {}; // Contains the state classes</script>
+    <script type="text/javascript" src="boot.js"></script>
+    <script type="text/javascript" src="preload.js"></script>
+    <script type="text/javascript" src="room.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<script>
+    window.onload=function(){
+        window.game = new Phaser.Game(1280, 720, Phaser.AUTO, '');
+        window.game.state.add('Boot', View.Boot, false);
+        window.game.state.add('Preloader', View.Preloader, false);
+        window.game.state.add('Room', View.Room, false);
+        console.log('trololo');
+        game.player = {};
+        console.log(game.player);
 
- 	<body>
- 		<canvas id="canvas"></canvas>
- 	</body>
+        function underTheRoom(){
+            console.log(3);
+            this.game.state.start('Room', true, false);
+        }
 
-	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
-	<script type="text/javascript" src="libEvent.js"></script>
-	<script type="text/javascript" src="Player.js"></script>
-	<script type="text/javascript" src="key.js"></script>
-	<script type="text/javascript" src="main.js"></script>
-
+        window.socket = io.connect();
+        window.game.state.start('Boot');
+    };
+</script>
+</body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
