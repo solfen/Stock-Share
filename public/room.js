@@ -13,14 +13,18 @@ View.Room.prototype = {
 
 		game.stage.backgroundColor = '#2d2d2d';
 
-		game.player.sprite = game.add.sprite(game.players[game.player.id].x, game.players[game.player.id].y, "hat");
+		game.player.sprite = game.add.sprite(game.players[game.player.id].x, game.players[game.player.id].y, "dandy");
+		game.player.sprite.scale.setTo(0.3,0.3);
+		game.player.sprite.anchor.setTo(0.5, 0.5);
+		game.player.sprite.animations.add('walk');
 
 		for(p in game.players)
 		{
 			if(p != game.player.id)
 			{
 				game.ghosts[p] = {};
-				game.ghosts[p].sprite = game.add.sprite(game.players[p].x, game.players[p].y, "hat");
+				game.ghosts[p].sprite = game.add.sprite(game.players[p].x, game.players[p].y, "dandy");
+				game.ghosts[p].sprite.scale.setTo(0.3,0.3);
 				game.ghosts[p].data = game.players[p];
 			}
 		}
@@ -32,6 +36,7 @@ View.Room.prototype = {
 
 	update: function(){
 		// game.physics.collide(player, player2);
+		game.player.sprite.animations.play('walk', 20, true);
 		if(game.player.newPlayer)
 		{
 			for(p in game.players)
@@ -39,7 +44,9 @@ View.Room.prototype = {
 				if(p != game.player.id && !game.ghosts[p])
 				{
 					game.ghosts[p] = {};
-					game.ghosts[p].sprite = game.add.sprite(game.players[p].x, game.players[p].y, "hat");
+					game.ghosts[p].sprite = game.add.sprite(game.players[p].x, game.players[p].y, "dandy");
+					game.ghosts[p].sprite.scale.setTo(0.3,0.3);
+					game.player.sprite.anchor.setTo(0.5, 0.5);
 					game.ghosts[p].data = game.players[p];
 				}
 			}
@@ -59,12 +66,14 @@ View.Room.prototype = {
 				game.ghosts[p].data.x = game.players[p].x
 				game.ghosts[p].sprite.x = game.players[p].x
 				//anim gauche ou droite
+				game.ghosts[p].sprite.angle = 90;
 			}
 			else if(p != game.player.id && game.ghosts[p].data.x < game.players[p].x)
 			{
 				game.ghosts[p].data.x = game.players[p].x
 				game.ghosts[p].sprite.x = game.players[p].x
 				//anim gauche ou droite
+				game.ghosts[p].sprite.angle = 270;
 			}
 
 			if(p != game.player.id && game.ghosts[p].data.y > game.players[p].y)
@@ -72,6 +81,7 @@ View.Room.prototype = {
 				game.ghosts[p].data.y = game.players[p].y
 				game.ghosts[p].sprite.y = game.players[p].y
 				//anim haut ou bas
+				game.ghosts[p].sprite.angle = 180;
 			}
 
 			if(p != game.player.id && game.ghosts[p].data.y < game.players[p].y)
@@ -79,6 +89,7 @@ View.Room.prototype = {
 				game.ghosts[p].data.y = game.players[p].y
 				game.ghosts[p].sprite.y = game.players[p].y
 				//anim haut ou bas
+				game.ghosts[p].sprite.angle = 0;
 			}
 
 			else if(p == game.player.id)

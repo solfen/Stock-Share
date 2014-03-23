@@ -13,7 +13,8 @@ View.Preloader.prototype = {
         /* Here the assets to need preload*/
         game.players = {}; // add
         game.ghosts = {};
-        game.load.image("hat", "hat.png");
+        game.load.spritesheet('dandy', 'sprite3.png', 650, 807, 8);
+        // game.load.image("hat", "hat.png");
 
         /* Start the preloader*/
 		// this.game.load.setPreloadSprite(this.loaderFull);
@@ -38,22 +39,26 @@ View.Preloader.prototype = {
 		    	{
 		    	    game.player.x -= 5;
 		    	    game.player.moved = true;
+		    	    game.player.sprite.angle = 90;
 		    	}
 		    	else if (key.right.isDown)
 		    	{
 		    	    game.player.x += 5;
 		    	    game.player.moved = true;
+		    	    game.player.sprite.angle = 270;
 		    	}
 
 		    	if (key.up.isDown)
 		    	{
 		    	    game.player.y -= 5;
 		    	    game.player.moved = true;
+		    	    game.player.sprite.angle = 180;
 		    	}
 		    	else if (key.down.isDown)
 		    	{
 		    	    game.player.y += 5;
 		    	    game.player.moved = true;
+		    	    game.player.sprite.angle = 0;
 		    	}
 
 		    	if(game.player.moved == true)
