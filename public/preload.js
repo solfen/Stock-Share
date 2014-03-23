@@ -22,6 +22,7 @@ View.Preloader.prototype = {
         game.load.image('petit', 'petit.png');
         game.load.image('moyen', 'moyen.png');
         game.load.image('gros', 'gros.png');
+        game.load.image('HUDBar', 'barrvert.png');
         // game.load.image("hat", "hat.png");
 
         /* Start the preloader*/

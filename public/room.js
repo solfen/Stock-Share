@@ -21,6 +21,23 @@ View.Room.prototype = {
 		game.player.sprite.anchor.setTo(0.5, 0.8);
 		game.player.sprite.animations.add('walk');
 
+		//HUD
+		window.HUDBar = game.add.sprite(0, 600, 'HUDBar');
+		HUDBar.fixedToCamera = true;
+	    HUDBar.cameraOffset.x = 0;
+	    HUDBar.cameraOffset.y = 600;
+
+	    window.text = game.add.text(game.world.centerX, game.world.centerY, "Cash: \n 1000 $", {
+	        font: "15px Arial",
+	        fill: "#ffffff",
+	        align: "right"
+	    });
+
+	    text.anchor.setTo(0.5, 0.5);
+	    text.fixedToCamera = true;
+	    text.cameraOffset.x = 1200;
+	    text.cameraOffset.y = 600;
+
 		window.playerHat = game.add.sprite(game.players[game.player.id].x, game.players[game.player.id].y, "petit");
 		playerHat.scale.setTo(0.15,0.15);
 		playerHat.anchor.setTo(0.5, 0.8);
@@ -142,6 +159,7 @@ View.Room.prototype = {
 
 		}
 		hatSize();
+		drawHUD();
 		game.player.move();
 	},
 	
@@ -206,4 +224,11 @@ function hatSize()
 		playerHat.anchor.setTo(0.5, 0.8);
 	}
 	playerHat.angle = angle;
+}
+
+function drawHUD()
+{
+	HUDBar.scale.setTo((game.player.map[Math.floor((game.player.y-165)/(1545/4))][Math.floor((game.player.x-245)/(1960/5))]), 1)
+
+	text.setText("Cash:\n" + game.player.money + " $");
 }
