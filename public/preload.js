@@ -17,6 +17,7 @@ View.Preloader.prototype = {
         game.load.image('idle', 'IDLE.png');
         game.load.audio('music', 'music/StockAndShare_1.ogg');
         game.load.audio('audience', 'sfx/ENV_CrowdAmbiance.ogg');
+        game.load.audio('tchating', 'sfx/NAR_Tchatching.ogg');
         game.load.image('room', 'salleprinccompress2.jpg');
         game.load.image('collideMap', 'salleblocking.png');
         game.load.image('collideBar', 'collideBar.jpg');

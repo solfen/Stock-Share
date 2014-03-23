@@ -96,6 +96,7 @@ View.Room.prototype = {
 		music.play('',0,1,true);
 		audience = game.add.audio('audience',1,true);
 		audience.play('',0,1,true);
+		window.tchating = game.add.audio('tchating', 1, true);
 
 		window.key = game.input.keyboard.createCursorKeys();
 		game.camera.follow(game.player);
@@ -213,6 +214,7 @@ function clickEvent()
 			}
 		}
 	}
+	tchating.play();
 }
 
 function randomMap()
