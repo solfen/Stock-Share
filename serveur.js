@@ -33,7 +33,7 @@ io.sockets.on('connection', function (socket)
 		{
 			if(rooms[r].numberCo < maxConnectByRoom && socket.co == false)
 			{
-				rooms[r].players[socket.id] = ({ x: Math.random()*1280, y: Math.random()*720, money:1000, lastExchange: ""});
+				rooms[r].players[socket.id] = ({ x: Math.random()*1000+255, y: Math.random()*1000+255, money:1000, lastExchange: ""});
 				rooms[r].listSockets[socket.id] = socket;
 
 				for(k in rooms[r].listSockets)

@@ -23,6 +23,9 @@ View.Preloader.prototype = {
         game.load.image('moyen', 'moyen.png');
         game.load.image('gros', 'gros.png');
         game.load.image('HUDBar', 'barrvert.png');
+        game.load.image('HUDHaut', 'haut.png');
+        game.load.image('HUDGauch', 'gauch.png');
+        game.load.image('HUDDroit', 'droit.png');
         // game.load.image("hat", "hat.png");
 
         /* Start the preloader*/

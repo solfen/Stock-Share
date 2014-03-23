@@ -22,25 +22,42 @@ View.Room.prototype = {
 		game.player.sprite.animations.add('walk');
 
 		//HUD
-		window.HUDBar = game.add.sprite(0, 600, 'HUDBar');
-		HUDBar.fixedToCamera = true;
-	    HUDBar.cameraOffset.x = 0;
-	    HUDBar.cameraOffset.y = 600;
+	    window.HUDHaut = game.add.sprite(350, 0, 'HUDHaut');
+	    HUDHaut.fixedToCamera = true;
+	    HUDHaut.cameraOffset.x = 350;
+	    HUDHaut.cameraOffset.y = 0;
 
-	    window.text = game.add.text(game.world.centerX, game.world.centerY, "Cash: \n 1000 $", {
-	        font: "15px Arial",
-	        fill: "#ffffff",
-	        align: "right"
-	    });
+		window.HUDGauch = game.add.sprite(0, 480, 'HUDGauch');
+		HUDGauch.fixedToCamera = true;
+	    HUDGauch.cameraOffset.x = 0;
+	    HUDGauch.cameraOffset.y = 480;
 
-	    text.anchor.setTo(0.5, 0.5);
-	    text.fixedToCamera = true;
-	    text.cameraOffset.x = 1200;
-	    text.cameraOffset.y = 600;
+    	window.HUDDroit = game.add.sprite(1000, 460, 'HUDDroit');
+    	HUDDroit.fixedToCamera = true;
+        HUDDroit.cameraOffset.x = 1000;
+        HUDDroit.cameraOffset.y = 460;
+
+    	window.HUDBar = game.add.sprite(0, 600, 'HUDBar');
+    	HUDBar.fixedToCamera = true;
+        HUDBar.cameraOffset.x = 10;
+        HUDBar.cameraOffset.y = 600;
+
+        window.text = game.add.text(game.world.centerX, game.world.centerY, "Cash: \n 1000 $", {
+            font: "35px Calibri",
+            fill: "#3c3c3b",
+            align: "right"
+        });
+
+        text.anchor.setTo(0.5, 0.5);
+        text.fixedToCamera = true;
+        text.cameraOffset.x = 1200;
+        text.cameraOffset.y = 600;
+
 
 		window.playerHat = game.add.sprite(game.players[game.player.id].x, game.players[game.player.id].y, "petit");
 		playerHat.scale.setTo(0.15,0.15);
 		playerHat.anchor.setTo(0.5, 0.8);
+
 
 		//PIXEL PERFECT TEST
 		// game.player.sprite.body.collideWorldBounds = true;
@@ -188,7 +205,9 @@ function clickEvent()
 			if(game.player.money > 0)
 			{
 				var ratio = game.player.map[Math.floor((game.player.y-165)/(1545/4))][Math.floor((game.player.x-245)/(1960/5))]
-		    	socket.emit('exchangePlayers', {id1:game.player.id, id2:p, idRoom:game.player.idRoom, ratioMap:ratio});
+
+				if(ratio)
+		    		socket.emit('exchangePlayers', {id1:game.player.id, id2:p, idRoom:game.player.idRoom, ratioMap:ratio});
 			}
 		}
 	}
@@ -228,7 +247,12 @@ function hatSize()
 
 function drawHUD()
 {
-	HUDBar.scale.setTo((game.player.map[Math.floor((game.player.y-165)/(1545/4))][Math.floor((game.player.x-245)/(1960/5))]), 1)
+	if(Math.floor((game.player.y-165)/(1545/4)) >= 0 && Math.floor((game.player.y-165)/(1545/4)) < 4 && Math.floor((game.player.x-245)/(1960/5)) >= 0 && Math.floor((game.player.x-245)/(1960/5)) < 5)
+	{
+		var ratio = game.player.map[Math.floor((game.player.y-165)/(1545/4))][Math.floor((game.player.x-245)/(1960/5))];
+
+		HUDBar.scale.setTo(ratio, 1)
+	}
 
 	text.setText("Cash:\n" + game.player.money + " $");
 }
