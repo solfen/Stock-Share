@@ -10,8 +10,11 @@ View.Room.prototype = {
 
 
 	create: function() {
+		window.room = game.add.sprite(0, 0, 'room');
 
-		game.stage.backgroundColor = '#2d2d2d';
+		room.scale.setTo(0.5, 0.5);
+
+		game.world.setBounds(0, 0, 2440, 1950);
 
 		game.player.sprite = game.add.sprite(game.players[game.player.id].x, game.players[game.player.id].y, "dandy");
 		game.player.sprite.scale.setTo(0.3,0.3);
@@ -30,8 +33,11 @@ View.Room.prototype = {
 				game.ghosts[p].data = game.players[p];
 			}
 		}
+		// music = game.add.audio('muse');
+		// music.play();
 
 		window.key = game.input.keyboard.createCursorKeys();
+		game.camera.follow(game.player);
 	},
 
 

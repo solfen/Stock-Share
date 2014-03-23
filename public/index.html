@@ -7,6 +7,7 @@
     <script>window.View = {}; // Contains the state classes</script>
     <script type="text/javascript" src="boot.js"></script>
     <script type="text/javascript" src="preload.js"></script>
+    <script type="text/javascript" src="loader.js"></script>
     <script type="text/javascript" src="room.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <style type="text/css">
@@ -21,6 +22,7 @@
         window.game = new Phaser.Game(1280, 720, Phaser.AUTO, '');
         window.game.state.add('Boot', View.Boot, false);
         window.game.state.add('Preloader', View.Preloader, false);
+        window.game.state.add('Loader', View.Loader, false);
         window.game.state.add('Room', View.Room, false);
         console.log('trololo');
         game.player = {};
@@ -31,7 +33,6 @@
             this.game.state.start('Room', true, false);
         }
 
-        window.socket = io.connect();
         window.game.state.start('Boot');
     };
 </script>
