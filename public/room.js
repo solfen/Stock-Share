@@ -92,8 +92,10 @@ View.Room.prototype = {
 				game.ghosts[p].data = game.players[p];
 			}
 		}
-		music = game.add.audio('music');
-		music.play();
+		music = game.add.audio('music',1,true);
+		music.play('',0,1,true);
+		audience = game.add.audio('audience',1,true);
+		audience.play('',0,1,true);
 
 		window.key = game.input.keyboard.createCursorKeys();
 		game.camera.follow(game.player);
