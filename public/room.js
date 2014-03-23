@@ -45,6 +45,12 @@ View.Room.prototype = {
 
 	update: function(){
 		// game.physics.collide(player, player2);
+		if(game.player.time > 9000)
+		{
+			game.player.time = 0;
+			randomMap();
+		}
+		game.player.time++;
 		game.player.sprite.animations.play('walk', 20, true);
 		if(game.player.newPlayer)
 		{
@@ -136,7 +142,7 @@ function clickEvent()
 			
 			if(game.player.money > 0)
 			{
-				var ratio = game.player.map[Math.floor(game.player.y-165)/(1545/4))][Math.floor((game.player.x-245)/(1960/5))]
+				var ratio = game.player.map[Math.floor((game.player.y-165)/(1545/4))][Math.floor((game.player.x-245)/(1960/5))]
 		    	socket.emit('exchangePlayers', {id1:game.player.id, id2:p, idRoom:game.player.idRoom, ratioMap:ratio});
 			}
 		}
