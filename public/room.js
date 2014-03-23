@@ -11,7 +11,7 @@ View.Room.prototype = {
 
 	create: function() {
 		window.room = game.add.sprite(0, 0, 'room');
-
+		game.input.onDown.add(clickEvent, "")
 		room.scale.setTo(0.5, 0.5);
 
 		game.world.setBounds(0, 0, 2440, 1950);
@@ -30,6 +30,7 @@ View.Room.prototype = {
 				game.ghosts[p].sprite.scale.setTo(0.3,0.3);
 				game.ghosts[p].sprite.anchor.setTo(0.5, 0.8);
 				game.ghosts[p].sprite.animations.add('walk');
+				game.ghosts[p].sprite.animations.play('walk', 20, true);
 				game.ghosts[p].data = game.players[p];
 			}
 		}
@@ -124,4 +125,31 @@ View.Room.prototype = {
     //         console.log("wesh gros");
     //     }
     // }
+}
+
+function clickEvent()
+{
+	for(p in game.ghosts)
+	{	
+		if(game.physics.collide(game.player.sprite, game.ghosts[p].sprite))
+		{
+			
+			if(game.player.money > 0)
+			{
+				var ratio = game.player.map[Math.floor(game.player.y-165)/(1545/4))][Math.floor((game.player.x-245)/(1960/5))]
+		    	socket.emit('exchangePlayers', {id1:game.player.id, id2:p, idRoom:game.player.idRoom, ratioMap:ratio});
+			}
+		}
+	}
+}
+
+function randomMap()
+{
+	game.player.map = 
+	[
+	 [Math.random(),Math.random(),Math.random(),Math.random(),Math.random()],
+	 [Math.random(),Math.random(),Math.random(),Math.random(),Math.random()],
+	 [Math.random(),Math.random(),Math.random(),Math.random(),Math.random()],
+	 [Math.random(),Math.random(),Math.random(),Math.random(),Math.random()],
+	]
 }
