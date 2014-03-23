@@ -15,7 +15,7 @@ View.Room.prototype = {
 
 		game.player.sprite = game.add.sprite(game.players[game.player.id].x, game.players[game.player.id].y, "dandy");
 		game.player.sprite.scale.setTo(0.3,0.3);
-		game.player.sprite.anchor.setTo(0.5, 0.5);
+		game.player.sprite.anchor.setTo(0.5, 0.8);
 		game.player.sprite.animations.add('walk');
 
 		for(p in game.players)
@@ -25,6 +25,8 @@ View.Room.prototype = {
 				game.ghosts[p] = {};
 				game.ghosts[p].sprite = game.add.sprite(game.players[p].x, game.players[p].y, "dandy");
 				game.ghosts[p].sprite.scale.setTo(0.3,0.3);
+				game.ghosts[p].sprite.anchor.setTo(0.5, 0.8);
+				game.ghosts[p].sprite.animations.add('walk');
 				game.ghosts[p].data = game.players[p];
 			}
 		}
@@ -46,7 +48,8 @@ View.Room.prototype = {
 					game.ghosts[p] = {};
 					game.ghosts[p].sprite = game.add.sprite(game.players[p].x, game.players[p].y, "dandy");
 					game.ghosts[p].sprite.scale.setTo(0.3,0.3);
-					game.player.sprite.anchor.setTo(0.5, 0.5);
+					game.ghosts[p].sprite.anchor.setTo(0.5, 0.8);
+					game.ghosts[p].sprite.animations.add('walk');
 					game.ghosts[p].data = game.players[p];
 				}
 			}
