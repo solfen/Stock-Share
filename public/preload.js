@@ -13,9 +13,15 @@ View.Preloader.prototype = {
         /* Here the assets to need preload*/
         game.players = {}; // add
         game.ghosts = {};
-        game.load.spritesheet('dandy', 'sprite3.png', 650, 807, 8);
-        game.load.audio('muse', 'Uprising.mp3');
+        game.load.spritesheet('dandy', 'sprite1.png', 650, 804, 8);
+        game.load.image('idle', 'IDLE.png');
+        game.load.audio('music', 'music/StockAndShare_1.ogg');
         game.load.image('room', 'salleprinccompress2.jpg');
+        game.load.image('collideMap', 'salleblocking.png');
+        game.load.image('collideBar', 'collideBar.jpg');
+        game.load.image('petit', 'petit.png');
+        game.load.image('moyen', 'moyen.png');
+        game.load.image('gros', 'gros.png');
         // game.load.image("hat", "hat.png");
 
         /* Start the preloader*/

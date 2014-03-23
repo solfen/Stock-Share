@@ -23,6 +23,7 @@ View.Loader.prototype = {
             game.player.lastExchange = game.players[data.id].lastExchange;
             game.player.idRoom = data.idRoom;
             randomMap();
+            window.angle = 0;
         
             game.player.move = function(time)
             {
@@ -30,22 +31,38 @@ View.Loader.prototype = {
             	{
             	    game.player.x -= 5;
             	    game.player.moved = true;
+                    game.player.sprite.angle = 90;
+                    playerHat.x -= 5;
+                    playerHat.angle = 90;
+                    angle = 90;
             	}
             	else if (key.right.isDown)
             	{
             	    game.player.x += 5;
             	    game.player.moved = true;
+                    game.player.sprite.angle = 270;
+                    playerHat.x += 5;
+                    playerHat.angle = 270;
+                    angle = 270;
             	}
 
             	if (key.up.isDown)
             	{
             	    game.player.y -= 5;
             	    game.player.moved = true;
+                    game.player.sprite.angle = 180;
+                    playerHat.y -= 5;
+                    playerHat.angle = 180;
+                    angle = 180;
             	}
             	else if (key.down.isDown)
             	{
             	    game.player.y += 5;
             	    game.player.moved = true;
+                    game.player.sprite.angle = 0;
+                    playerHat.y += 5;
+                    playerHat.angle = 0;
+                    angle = 0;
             	}
 
             	if(game.player.moved == true)

@@ -21,6 +21,30 @@ View.Room.prototype = {
 		game.player.sprite.anchor.setTo(0.5, 0.8);
 		game.player.sprite.animations.add('walk');
 
+		window.playerHat = game.add.sprite(game.players[game.player.id].x, game.players[game.player.id].y, "petit");
+		playerHat.scale.setTo(0.15,0.15);
+		playerHat.anchor.setTo(0.5, 0.8);
+
+		//PIXEL PERFECT TEST
+		// game.player.sprite.body.collideWorldBounds = true;
+		
+		// window.group = game.add.group();
+		// window.collideMap = game.add.sprite(0, 0, 'collideMap');
+		// collideMap.scale.setTo(0.5, 0.5);
+		// collideMap.alpha = 0.1;
+
+		// group.create(0,0,'collideBar');
+		// group.create(0,0,'collideBar');
+		// group.create(0,0,'collideBar');
+		// group.create(0,0,'collideBar');
+		// group.body.immovable = true;
+
+		// game.player.sprite.inputEnable = true;
+		// game.player.sprite.input.pixelPerfect = true;
+		// collideMap.inputEnable = true;
+		// collideMap.input.pixelPerfect = true;
+
+
 		for(p in game.players)
 		{
 			if(p != game.player.id)
@@ -34,8 +58,8 @@ View.Room.prototype = {
 				game.ghosts[p].data = game.players[p];
 			}
 		}
-		// music = game.add.audio('muse');
-		// music.play();
+		music = game.add.audio('music');
+		music.play();
 
 		window.key = game.input.keyboard.createCursorKeys();
 		game.camera.follow(game.player);
@@ -44,7 +68,7 @@ View.Room.prototype = {
 
 
 	update: function(){
-		// game.physics.collide(player, player2);
+		// game.physics.collide(game.player.sprite, group);
 		if(game.player.time > 9000)
 		{
 			game.player.time = 0;
@@ -83,6 +107,8 @@ View.Room.prototype = {
 				game.ghosts[p].sprite.x = game.players[p].x
 				//anim gauche ou droite
 				game.ghosts[p].sprite.angle = 90;
+				// playerHat.x = game.players[p].x;
+				// playerHat.angle = 90;
 			}
 			else if(p != game.player.id && game.ghosts[p].data.x < game.players[p].x)
 			{
@@ -108,13 +134,14 @@ View.Room.prototype = {
 				game.ghosts[p].sprite.angle = 0;
 			}
 
-			else if(p == game.player.id)
+			else if(p == game.player.id && p)
 			{
 				game.player.sprite.x = game.player.x;
 				game.player.sprite.y = game.player.y;
 			}
 
 		}
+		hatSize();
 		game.player.move();
 	},
 	
@@ -158,4 +185,25 @@ function randomMap()
 	 [Math.random(),Math.random(),Math.random(),Math.random(),Math.random()],
 	 [Math.random(),Math.random(),Math.random(),Math.random(),Math.random()],
 	]
+}
+
+function hatSize()
+{
+	playerHat.destroy();
+	if(game.player.money < 1500){
+		playerHat = game.add.sprite(game.players[game.player.id].x, game.players[game.player.id].y, "petit");
+		playerHat.scale.setTo(0.15,0.15);
+		playerHat.anchor.setTo(0.5, 0.8);
+	}
+	else if(game.player.money < 3000){
+		playerHat = game.add.sprite(game.players[game.player.id].x, game.players[game.player.id].y, "moyen");
+		playerHat.scale.setTo(0.15,0.15);
+		playerHat.anchor.setTo(0.5, 0.8);
+	}
+	else{
+		playerHat = game.add.sprite(game.players[game.player.id].x, game.players[game.player.id].y, "gros");
+		playerHat.scale.setTo(0.15,0.15);
+		playerHat.anchor.setTo(0.5, 0.8);
+	}
+	playerHat.angle = angle;
 }
